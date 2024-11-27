@@ -1,0 +1,32 @@
+install.packages(c("devtools","usethis","knitr","rmarkdown", "roxygen2", "pkgdown"))
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+
+# 바이너리 버전 강제 설치
+install.packages("httr2", type = "binary")
+pkgdown::build_site()
+
+# Run once to configure package to use pkgdown
+usethis::use_pkgdown()
+
+# created README.md for Github landing page
+usethis::use_readme_md(open = FALSE)
+
+# creates LICENSE.md file
+usethis::use_mit_license("Ewha Kim")
+
+
+# creates NEWS.md file
+usethis::use_news_md(open = FALSE)
+
+# create a vignettes folder and vignettes/first_vignette.Rmd
+usethis::use_vignette("first_vignette")
+
+# create a vignettes/how_to_build_pkgdown_website.Rmd
+usethis::use_vignette("how_to_build_pkgdown_website")
+pkgdown::build_site()
+
+library(roxygen2)
+roxygen2::roxygenise()
+
+
+
